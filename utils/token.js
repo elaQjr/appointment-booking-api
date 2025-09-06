@@ -19,7 +19,7 @@ const verifyToken = (token, jwtSecret) => {
     return { valid: true, expired: false, decoded };
   } catch (err) {
     if (err.name === "TokenExpiredError") {
-      return { valid: false, expired: true, decoded: null };
+      return { valid: false, expired: true, decoded: null, message: "توکن منقضی شده" };
     } else if (err.name === "JsonWebTokenError") {
       return { valid: false, expired: false, decoded: null, message: "توکن نامعتبره" };
     } else if (err.name === "NotBeforeError") {

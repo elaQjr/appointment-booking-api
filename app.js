@@ -45,8 +45,12 @@ app.use(cors({
   credentials: true
 }));
 
-// Configs
-dotenv.config();
+// ENV + DB
+if (process.env.NODE_ENV === 'test') {
+  dotenv.config({ path: '.env.test' });
+} else {
+  dotenv.config();
+}
 connectDB();
 
 // Cookie Parser
